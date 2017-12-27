@@ -48,9 +48,9 @@ icon_img= pygame.image.load("pygame/img/icon.png")
 pygame.display.set_icon(icon_img)
 
 #sounds
-explod_sound=pygame.mixer.Sound("exploding.wav")
-swoosh_sound=pygame.mixer.Sound("meteor_sound.wav")
-takeoff_sound=pygame.mixer.Sound("takeoff.wav")
+explod_sound=pygame.mixer.Sound("pygame/sound_effect/exploding.wav")
+swoosh_sound=pygame.mixer.Sound("pygame/sound_effect/meteor_sound.wav")
+takeoff_sound=pygame.mixer.Sound("pygame/sound_effect/takeoff.wav")
 pause=False
 
 # .convert.alpha()
@@ -191,10 +191,10 @@ def game_over():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        #GameScreen.fill(dark_grey)
+       
         font = pygame.font.SysFont("georgia", 82)
         the_text="GAMEOVER"
-        # score_view=
+       
         GameScreen.blit(font.render(the_text, True, (grey)), ((screen_height / 3), screen_height / 3))
 
         # play_button(msg, x, y, w, h, inact_color, act_color, txt_color, txtx, txty, action=None):
@@ -225,20 +225,21 @@ def game_loop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-
+            
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     x_change += -5
 
                 if event.key == pygame.K_RIGHT:
                     x_change += 5
-
+                    
+                 #pause button
                 if event.key ==pygame.K_p:
                     pause=True
                     game_paused()
 
 
-
+              
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     x_change += 5
@@ -246,7 +247,7 @@ def game_loop():
                     x_change += -5
 
 
-             # If toched the boundries
+             # If the rocket toches the boundries
         if  (player_x + player_width) > screen_width or player_x < 0:
                 game_over()
 
